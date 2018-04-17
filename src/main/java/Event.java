@@ -9,9 +9,10 @@ public class Event {
     private Date date;
     private DateFormat dateFormat;
 
-    public Event(Date date, DateFormat dateFormat) {
+    public Event(Date date, DateFormat dateFormat, String msg) {
         this.date = date;
         this.dateFormat = dateFormat;
+        this.msg = msg;
     }
 
     public void setMsg(String msg) {

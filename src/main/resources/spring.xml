@@ -9,11 +9,12 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
         <constructor-arg type="java.lang.String" value="Oksana Semenkova"/>
     </bean>
 
-    <bean id="eventLogger" class="ConsoleEventLogger"/>
+    <bean id="consoleEventLogger" class="ConsoleEventLogger"/>
 
     <bean id="app" class="App">
         <constructor-arg ref="client"/>
-        <constructor-arg ref="eventLogger"/>
+        <constructor-arg ref="consoleEventLogger"/>
+        <constructor-arg ref="fileEventLogger"/>
     </bean>
 
     <bean id="dateFormat"
@@ -25,7 +26,11 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
             <bean class="java.util.Date"/>
         </constructor-arg>
         <constructor-arg ref="dateFormat"/>
+        <constructor-arg type="java.lang.String" value="Log for 1"/>
+
     </bean>
+
+    <bean id="fileEventLogger" class="FileEventLogger"/>
 
 
 
