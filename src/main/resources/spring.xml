@@ -16,5 +16,17 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
         <constructor-arg ref="eventLogger"/>
     </bean>
 
+    <bean id="dateFormat"
+          class="java.text.DateFormat"
+            factory-method="getDateTimeInstance"/>
+
+    <bean id="event" class="Event">
+        <constructor-arg>
+            <bean class="java.util.Date"/>
+        </constructor-arg>
+        <constructor-arg ref="dateFormat"/>
+    </bean>
+
+
 
 </beans>
