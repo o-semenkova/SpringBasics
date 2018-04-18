@@ -13,8 +13,7 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 
     <bean id="app" class="App">
         <constructor-arg ref="client"/>
-        <constructor-arg ref="consoleEventLogger"/>
-        <constructor-arg ref="fileEventLogger"/>
+        <constructor-arg ref="cacheFileEventLogger"/>
     </bean>
 
     <bean id="dateFormat"
@@ -30,7 +29,12 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 
     </bean>
 
-    <bean id="fileEventLogger" class="FileEventLogger"/>
+    <bean id="fileEventLogger" class="FileEventLogger"
+    init-method="init"/>
+
+    <bean id="cacheFileEventLogger" class="CacheFileEventLogger" init-method="init" destroy-method="destroy">
+        <constructor-arg value="1"/>
+    </bean>
 
 
 
