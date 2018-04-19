@@ -12,6 +12,8 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
     <bean id="app" class="App">
         <constructor-arg ref="client"/>
         <constructor-arg ref="cacheFileEventLogger"/>
+        <constructor-arg ref="combinedEventLogger"/>
+        <constructor-arg ref="consoleEventLogger"/>
     </bean>
 
     <bean id="dateFormat"
