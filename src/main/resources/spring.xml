@@ -5,9 +5,12 @@
 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
     <import resource="loggers.xml"/>
     <bean id="client" class="Client">
-        <constructor-arg type="java.lang.Long" value="1"/>
-        <constructor-arg type="java.lang.String" value="Oksana Semenkova"/>
-        <property name="greeting" value="Hello there!"/>
+        <!--<constructor-arg type="java.lang.Long" value="1"/>-->
+        <!--<constructor-arg type="java.lang.String" value="Oksana Semenkova"/>-->
+        <!--<property name="greeting" value="Hello there!"/>-->
+        <constructor-arg value="${id}" type="java.lang.Long"/>
+        <constructor-arg value="${name}"/>
+        <constructor-arg value="${greeting}"/>
     </bean>
     <bean id="app" class="App">
         <constructor-arg ref="client"/>
@@ -26,6 +29,15 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
         </constructor-arg>
         <constructor-arg ref="dateFormat"/>
         <constructor-arg type="java.lang.String" value="Log for 1"/>
+    </bean>
 
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:client.properties</value>
+            </list>
+        </property>
+        <property name="ignoreResourceNotFound" value="true"/>
+        <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"/>
     </bean>
 </beans>
