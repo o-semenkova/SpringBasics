@@ -14,10 +14,14 @@
     <bean id="combinedEventLogger" class="CombinedEventLogger">
 
         <constructor-arg>
-            <list>
-                <ref bean="consoleEventLogger"/>
-                <ref bean="fileEventLogger"/>
-            </list>
+            <!--<list>-->
+                <!--<ref bean="consoleEventLogger"/>-->
+                <!--<ref bean="fileEventLogger"/>-->
+            <!--</list>-->
+            <map>
+                <entry key="INFO" value-ref="consoleEventLogger"/>
+                <entry key="ERROR" value-ref="fileEventLogger"/>
+            </map>
         </constructor-arg>
     </bean>
 </beans>

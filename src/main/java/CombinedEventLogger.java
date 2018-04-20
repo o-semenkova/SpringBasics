@@ -1,18 +1,22 @@
 import java.io.IOException;
-import java.util.Collection;
+import java.util.Map;
 
 public class CombinedEventLogger implements EventLogger {
 
-    private Collection<EventLogger> loggers;
+    private Map<EventType,EventLogger> loggers;
 
-    public CombinedEventLogger(Collection<EventLogger> loggers){
+    public CombinedEventLogger(Map<EventType,EventLogger> loggers){
         this.loggers = loggers;
     }
 
     @Override
-    public void logEvent(Event event) throws IOException {
-        for(EventLogger logger: loggers){
-            logger.logEvent(event);
-        }
+    public void logEvent(Event event) {
+        loggers.forEach((k,v) -> {
+            try {
+                v.logEvent(event);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 }
